@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://thymeleaf.org/"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+
+	<nav class="nav bg-primary" style="justify-content: space-between; align-items: center;">
+	
+		<div style="display: inline-flex;">
+			<a href="/" class="navbar-brand" style="color:#fff;margin-left: 25px;">Helpdesk</a>
+			
+			<ul class="nav nav-tabs" sec:authorize="isAuthenticated()">
+			  	<li class="nav-item">
+			    	<a href="/users" class="nav-link" style="color:#fff;">Users</a>
+				</li>
+				<li class="nav-item">
+			  		<a href="/roles" class="nav-link" style="color:#fff;">Roles</a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<a href="/tickets" class="nav-link" style="color:#fff;">Tickets</a>
+			  	</li>
+			</ul>
+		</div>
+		
+		<ul class="navbar nav" sec:authorize="isAuthenticated()">
+		  	<li class="nav-item">
+		    	<a href="/logout" class="nav-link" style="color:#fff;">Logout</a>
+			</li>
+		</ul>
+		
+	</nav>
+</html>

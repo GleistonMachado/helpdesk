@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://thymeleaf.org" 
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" 
+	layout:decorator="layout"
+>
+	
+	<th:block layout:fragment="content">
+	
+		<div class="col-xs-12 col-md-12">
+			<a href="/users/new" class="btn btn-success">Create</a>
+		</div>
+		
+		<div class="col-xs-12 col-md-12">
+			<h5 class="mt-4 mb-4">Listing users</h5>
+			
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">Name</th>
+			      <th scope="col">Last Name</th>
+			      <th scope="col">Email</th>
+			      <th scope="col">Active</th>
+			      <th scope="col">Actions</th>	
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="user : ${list}">
+			      	<td th:text="${user.name}"></td>
+					<td th:text="${user.lastName}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:switch="${user.active}">
+						<span th:case="${true}" th:text="${user.active}" class="badge badge-success"></span>
+						<span th:case="${false}" th:text="${user.active}" class="badge badge-warning"></span>
+					</td>
+					<td style="display: flex;">
+						<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info inline mr-2" >Edit</a>
+						
+						<form class="inline" th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+					</td>
+			    </tr>
+			  </tbody>
+			</table>
+			
+		</div>
+		
+	</th:block>
+	
+</html>
